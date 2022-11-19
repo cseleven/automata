@@ -1,7 +1,5 @@
-
 A + B
 -
-*k
 if
 thenn
 id1
@@ -19,7 +17,6 @@ YHJHKJHKJ
 HKJHhkjkj
 jkjjhUHKJHLHJ
 ffgdhg_kjjjjl
-12345gffuygugy
 ____hhjjj
 ____1225
 ++
