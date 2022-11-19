@@ -18,7 +18,7 @@ public class test_1 {
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
         // Open the file
-        FileInputStream fstream = new FileInputStream("D:/automata/fileName.txt");
+        FileInputStream fstream = new FileInputStream("D:/New folder/automata/fileName.txt");
         // "src/lexical/analizer/textfile"
         // "C:\Users\jee38\OneDrive\Documents\automata\fileName.txt"
         BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
@@ -27,9 +27,9 @@ public class test_1 {
         String strLine;
         // สร้างเพื่อเก็บ String จาก textfile ที่รับจากตัวแปร strLines
         ArrayList<String> beforeSplitlines = new ArrayList<String>();
-        // สร้างเพื่อเก็บค่า String จาก 
+        // สร้างเพื่อเก็บค่า String จาก หลังจาก split ข้อมูลออกมาจาก อาเรย์ beforeSplitlines(ข้อมูลบรรทัดเดียวกันมันมีเว้นวรรคทำให้มันอ่านและเก็บค่าเป็นบรรทัดไม่ได้เป็นคำๆไป)
         ArrayList<String> lines = new ArrayList<String>();
-
+        // สร้างเพื่อเก็บค่า textfile ที่มีค่าเป็น identifierตามโจทย์อาจารย์ ห้านมันซ้ำกัน (จะเอามันไปloopเช็คว่าซ้ำไหม)
         ArrayList<String> identifier = new ArrayList<String>();
         System.out.println("identifier " + identifier.size());
 
@@ -46,6 +46,7 @@ public class test_1 {
 
         br.close();
 
+        //ใช้เช็คตัวที่เป็น String กับคอมเม้นตามโจทย์อาจารย์
         for (int j = 0; j < beforeSplitlines.size(); j++) {
 
             if (Pattern.matches("\"[^\"]*\"", beforeSplitlines.get(j))) {
@@ -61,14 +62,16 @@ public class test_1 {
 
         }
 
+
+        //ใช้ split เอาวรรคออกแล้วเก็บค่าตัวแปรเป็นตัวๆ จากอาเรย์ beforeSplitlines เก็บไว้ในอาเรย์ lines
         for (String line : beforeSplitlines) {
 
             lines.addAll(Arrays.asList(line.split("\\s")));
             // Collections.addAll(lines, line.split("\\s"));
         }
 
+        //ใช้เช็คตัวที่เป็น operater วงเล็บ semicolon keywords integer identifier ตามโจทย์อาจารย์ เช็ค error ถ้าไม่ตรงโจทย์
         for (int i = 0; i < lines.size(); i++) {
-            int k = 0;
 
             if (lines.get(i).equals("+") || lines.get(i).equals("-") || lines.get(i).equals("*")
                     || lines.get(i).equals("/") || lines.get(i).equals("=") || lines.get(i).equals(">")
@@ -95,23 +98,23 @@ public class test_1 {
 
             } else if (Pattern.matches("\\b[_a-zA-Z][_a-zA-Z0-9]*\\b", lines.get(i))) {// ^([a-zA-Z_$][a-zA-Z\\d_$]*)$
 
-                if (identifier.size() != 0) {
+                /*if (identifier.size() != 0) {
 
                     for (int l = 0; l < identifier.size() + 1; l++) {
 
                         if (lines.get(i) == identifier.get(l)) {
                             break;
-                        }
+                        }*/
 
                         System.out.println("new identifier : " + lines.get(i));
                         identifier.add(lines.get(i));
-                    }
+                    /* }
                 } else {
 
                     System.out.println("new identifier : " + lines.get(i));
                     identifier.add(lines.get(i));
 
-                }
+                }*/
             } /*
                * else if (Pattern.matches("\"[^\"]*\"", beforeSplitlines.get(i))) {
                * System.out.println("String : " + beforeSplitlines.get(i));
@@ -129,6 +132,8 @@ public class test_1 {
             }
 
         }
+
+        //ใช้ปริ้นค้าในidentifierมาดู เดี๋ยวลบ
         for (int j = 0; j < identifier.size(); j++) {
             System.out.print(identifier.get(j) + " ");
         }
