@@ -99,47 +99,26 @@ public class test_1 {
                 System.out.println("integers : " + lines.get(i));
             //ถ้าค่าที่ตรวจมีค่าเท่ากับ ตัวอักษรหรือตัวเลข 0-9 หรือแบบผสมทั้งคู่ ให้แสดงผลค่า new identifier : ค่าที่ตรวจ
             } else if (Pattern.matches("\\b[_a-zA-Z][_a-zA-Z0-9]*\\b", lines.get(i))) {// ^([a-zA-Z_$][a-zA-Z\\d_$]*)$
-
-                /*if (identifier.size() != 0) {
-
-                    for (int l = 0; l < identifier.size() + 1; l++) {
-
-                        if (lines.get(i) == identifier.get(l)) {
-                            break;
-                        }*/
-
-                        System.out.println("new identifier : " + lines.get(i));
-                        identifier.add(lines.get(i));
-                    /* }
-                } else {
-
+                
+                boolean exist = true;
+                for (int p = 0; p < identifier.size()-1; p++) {   
+                    if (lines.get(i).equals(identifier.get(p))) {  
+                        exist=false;
+                    }
+                }
+                
+                if(exist){
                     System.out.println("new identifier : " + lines.get(i));
                     identifier.add(lines.get(i));
-
-                }*/
-            } /*
-               * else if (Pattern.matches("\"[^\"]*\"", beforeSplitlines.get(i))) {
-               * System.out.println("String : " + beforeSplitlines.get(i));
-               * 
-               * } else if (beforeSplitlines.get(i).contains("/*") &&
-               * beforeSplitlines.get(i).contains("")) {
-               * System.out.println("comments : " + beforeSplitlines.get(i));
-               * 
-               * } else if (Pattern.matches("(?s)/\\*(.)*?\\*", beforeSplitlines.get(i))) {
-               * System.out.println("comments : " + beforeSplitlines.get(i));
-               */
-
+                }else {
+                    System.out.println("identifier " + lines.get(i)+ " already exist in table");
+                }
+            } 
             else {
                 //จะเป็น error เมื่อมีค่าที่มีตัวเลขนำหน้าตัวอักษร
                 System.out.println("error : " + lines.get(i));
             }
 
         }
-
-        //ใช้ปริ้นค้าในidentifier มาดู เดี๋ยวลบ
-        for (int j = 0; j < identifier.size(); j++) {
-            System.out.print(identifier.get(j) + " ");
-        }
-
     }
 }

@@ -1,0 +1,33 @@
+
+A + B
+-
+*k
+if
+thenn
+id1
+id2
+id1
+"Hello World"
+()
+;
+b () n
+0
+123
+b
+bvgfhgjh
+YHJHKJHKJ
+HKJHhkjkj
+jkjjhUHKJHLHJ
+ffgdhg_kjjjjl
+12345gffuygugy
+____hhjjj
+____1225
+++
+--
+**
+//comment
+/*comment*/
+/* comment */
+/* comment */
+/* comment */
+/* comment */
