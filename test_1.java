@@ -23,16 +23,20 @@ public class test_1 {
         // "C:\Users\jee38\OneDrive\Documents\automata\fileName.txt"
         BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 
+        // ตัวแปร สร้างเพื่อรับจาก textfile
         String strLine;
+        // สร้างเพื่อเก็บ String จาก textfile ที่รับจากตัวแปร strLines
+        ArrayList<String> beforeSplitlines = new ArrayList<String>();
+        // สร้างเพื่อเก็บค่า String จาก 
         ArrayList<String> lines = new ArrayList<String>();
-        ArrayList<String> linesA = new ArrayList<String>();
+
         ArrayList<String> identifier = new ArrayList<String>();
         System.out.println("identifier " + identifier.size());
 
         // Read File Line By Line
         while ((strLine = br.readLine()) != null) {
 
-            linesA.add(strLine);
+            beforeSplitlines.add(strLine);
             System.out.print("strLine " + strLine);
 
         }
@@ -42,21 +46,22 @@ public class test_1 {
 
         br.close();
 
-        for (int j = 0; j < linesA.size(); j++) {
+        for (int j = 0; j < beforeSplitlines.size(); j++) {
 
-            if (Pattern.matches("\"[^\"]*\"", linesA.get(j))) {
-                System.out.println("String : " + linesA.get(j));
-                linesA.remove(j);
+            if (Pattern.matches("\"[^\"]*\"", beforeSplitlines.get(j))) {
+                System.out.println("String : " + beforeSplitlines.get(j));
+                beforeSplitlines.remove(j);
 
-            } else if (linesA.get(j).contains("/*") && linesA.get(j).contains("*/") || linesA.get(j).contains("//")) {
-                System.out.println("comments : " + linesA.get(j));
-                linesA.remove(j);
+            } else if (beforeSplitlines.get(j).contains("/*") && beforeSplitlines.get(j).contains("*/")
+                    || beforeSplitlines.get(j).contains("//")) {
+                System.out.println("comments : " + beforeSplitlines.get(j));
+                beforeSplitlines.remove(j);
 
             }
 
         }
 
-        for (String line : linesA) {
+        for (String line : beforeSplitlines) {
 
             lines.addAll(Arrays.asList(line.split("\\s")));
             // Collections.addAll(lines, line.split("\\s"));
@@ -94,14 +99,13 @@ public class test_1 {
 
                     for (int l = 0; l < identifier.size() + 1; l++) {
 
-                        switch(lines.get(i)){
-                            case !=identifier.get(l) :
+                        if (lines.get(i) == identifier.get(l)) {
+                            break;
                         }
 
-                        
-                    System.out.println("new identifier : " + lines.get(i));
+                        System.out.println("new identifier : " + lines.get(i));
                         identifier.add(lines.get(i));
-                }
+                    }
                 } else {
 
                     System.out.println("new identifier : " + lines.get(i));
@@ -109,14 +113,15 @@ public class test_1 {
 
                 }
             } /*
-               * else if (Pattern.matches("\"[^\"]*\"", linesA.get(i))) {
-               * System.out.println("String : " + linesA.get(i));
+               * else if (Pattern.matches("\"[^\"]*\"", beforeSplitlines.get(i))) {
+               * System.out.println("String : " + beforeSplitlines.get(i));
                * 
-               * } else if (linesA.get(i).contains("/*") && linesA.get(i).contains("")) {
-               * System.out.println("comments : " + linesA.get(i));
+               * } else if (beforeSplitlines.get(i).contains("/*") &&
+               * beforeSplitlines.get(i).contains("")) {
+               * System.out.println("comments : " + beforeSplitlines.get(i));
                * 
-               * } else if (Pattern.matches("(?s)/\\*(.)*?\\*", linesA.get(i))) {
-               * System.out.println("comments : " + linesA.get(i));
+               * } else if (Pattern.matches("(?s)/\\*(.)*?\\*", beforeSplitlines.get(i))) {
+               * System.out.println("comments : " + beforeSplitlines.get(i));
                */
 
             else {
