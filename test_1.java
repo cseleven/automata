@@ -64,7 +64,6 @@ public class test_1 {
 
         }
 
-
         //ใช้ split เอาวรรคออกแล้วเก็บค่าตัวแปรเป็นตัวๆ จากอาเรย์ beforeSplitlines เก็บไว้ในอาเรย์ lines
         for (String line : beforeSplitlines) {
             lines.addAll(Arrays.asList(line.split("\\s")));
@@ -99,17 +98,20 @@ public class test_1 {
                 System.out.println("integers : " + lines.get(i));
             //ถ้าค่าที่ตรวจมีค่าเท่ากับ ตัวอักษรหรือตัวเลข 0-9 หรือแบบผสมทั้งคู่ ให้แสดงผลค่า new identifier : ค่าที่ตรวจ
             } else if (Pattern.matches("\\b[_a-zA-Z][_a-zA-Z0-9]*\\b", lines.get(i))) {// ^([a-zA-Z_$][a-zA-Z\\d_$]*)$
-                
+                //สร้างตัวแปร boolean ไปใช้ในเงื่อนไข
                 boolean exist = true;
+                //loop เพื่อเช็คว่าค่าที่ตรวจสอบมีค่าที่ตรงกันในอาเรย์ลิสต์ไหม ถ้ามี exist จะเป็นค่า false
                 for (int p = 0; p < identifier.size()-1; p++) {   
                     if (lines.get(i).equals(identifier.get(p))) {  
-                        exist=false;
+                        exist = false;
                     }
                 }
                 
+                //เช็คเงื่อนไขของ exist ถ้าเป็นจริงหมายความว่าค่าที่ตรวจสอบปัจจุบันไม่ซ้ำใครเลย ค่านั้นจะถูกบันทึกลงอาเรย์ลิสต์
                 if(exist){
                     System.out.println("new identifier : " + lines.get(i));
                     identifier.add(lines.get(i));
+                    //exist ถ้าเป็นเท็จหมายความว่าค่าที่ตรวจสอบปัจจุบันมีค่าที่ซ้ำกันในอาเรย์เลย ค่านั้นจะไม่ถูกบันทึกลงอาเรย์ลิสต์
                 }else {
                     System.out.println("identifier " + lines.get(i)+ " already exist in table");
                 }
