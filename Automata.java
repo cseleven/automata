@@ -1,3 +1,20 @@
+/* github 
+    HTTPS : https://github.com/cseleven/automata.git
+    SSH : git@github.com:cseleven/automata.git
+*/
+
+/* สมาชิก
+    61050252 พัสกร สกุลวานิชพร
+    63050090 กรณิศ ชัยบุญชู
+    63050095 กัญธิชา ไตรศรี
+    63050096 กันยา แสนคำ
+    63050146 ธัญสิริ ศรีสูงเนิน
+    63050147 ธาริตา วรรธนาภา
+    63050166 พิลดา ประสาน
+ */
+
+ /******************** version ส่งนะฮะ ************************/
+
 import java.util.*;
 import java.io.*;
 import java.util.regex.Pattern;
