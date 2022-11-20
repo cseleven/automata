@@ -8,18 +8,18 @@ public class test_1 {
     // ห้ามมันซ้ำกัน (จะเอามันไปloopเช็คว่าซ้ำไหม)
     private static ArrayList<String> identifier = new ArrayList<String>();
 
+    private static boolean existAfterError = false;
+
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
         System.out.printf("%nInput%n");
 
         // Open the file
-        FileInputStream fstream = new FileInputStream("D:/New folder/automata/fileName.txt");
+        FileInputStream fstream = new FileInputStream("fileName.txt");
         BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 
         // ตัวแปร สร้างเพื่อรับจาก textfile
         String strLine;
-
-        boolean existAfterError = true;
 
         // สร้างเพื่อเก็บ String จาก textfile ที่รับจากตัวแปร strLines
         ArrayList<String> beforeSplitlines = new ArrayList<String>();
@@ -53,19 +53,17 @@ public class test_1 {
                 // กรณีที่บรรทัดนั้นไม่ใช่ทั้ง string และ comment จะเช็คในบรรทัด
             } else {
                 // boolean s = true;
-                if (existAfterError) {
-                    checkInLine(beforeSplitlines.get(j), existAfterError);
-                } else {
-                    break;
-                }
-
+                checkInLine(beforeSplitlines.get(j));
             }
 
+            if(existAfterError){
+                break;
+            }
         }
     }
 
     // เช็คภายในบรรทัด
-    public static void checkInLine(String beforeSplitlines, boolean existAfterError) {
+    public static void checkInLine(String beforeSplitlines) {
 
         // สร้างเพื่อเก็บค่า String หลังจาก split ข้อมูลออกมาจากแถว
         // beforeSplitlines(ข้อมูลบรรทัดเดียวกันมันมีเว้นวรรคทำให้มันอ่านและเก็บค่าเป็นบรรทัดไม่ได้เป็นคำๆไป)
@@ -131,7 +129,7 @@ public class test_1 {
             } else {
                 // จะเป็น error เมื่อมีค่าที่มีตัวเลขนำหน้าตัวอักษร
                 System.out.println("error : " + lines.get(i));
-                existAfterError = false;
+                existAfterError = true;
                 // break;
             }
         }
