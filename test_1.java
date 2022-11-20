@@ -40,8 +40,11 @@ public class test_1 {
         for (int j = 0; j < beforeSplitlines.size(); j++) {
             // boolean s = true;
 
-            // ถ้าค่าที่ตรวจมีลักษณะเป็น /* // */ จะแสดงผลเป็น comments : ค่าที่ตรวจ
-            if (beforeSplitlines.get(j).contains("/*") && beforeSplitlines.get(j).contains("*/")
+            // ถ้าบรรทัดนั้นว่าง
+            if (beforeSplitlines.get(j).isEmpty()){
+                //do nothing
+                // ถ้าค่าที่ตรวจมีลักษณะเป็น /* // */ จะแสดงผลเป็น comments : ค่าที่ตรวจ
+            } else if (beforeSplitlines.get(j).contains("/*") && beforeSplitlines.get(j).contains("*/")
                     || beforeSplitlines.get(j).contains("//")) {
                 // System.out.println("comments : " + beforeSplitlines.get(j));
 
