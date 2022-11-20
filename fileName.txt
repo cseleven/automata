@@ -21,7 +21,6 @@ ____hhjjj
 ____1225
 ++
 --
-**
 //comment
 /*comment*/
 /* comment */
