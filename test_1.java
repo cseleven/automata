@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-import java.util.regex.*;
+import java.util.regex.Pattern;
 
 public class test_1 {
 
@@ -13,11 +13,13 @@ public class test_1 {
         System.out.printf("%nInput%n");
 
         // Open the file
-        FileInputStream fstream = new FileInputStream("D:/New folder/automata/test_1.java");
+        FileInputStream fstream = new FileInputStream("D:/New folder/automata/fileName.txt");
         BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 
         // ตัวแปร สร้างเพื่อรับจาก textfile
         String strLine;
+
+        boolean existAfterError = true;
 
         // สร้างเพื่อเก็บ String จาก textfile ที่รับจากตัวแปร strLines
         ArrayList<String> beforeSplitlines = new ArrayList<String>();
@@ -27,7 +29,7 @@ public class test_1 {
             beforeSplitlines.add(strLine);
             System.out.println("strLine : " + strLine);
         }
-        
+
         System.out.println();
 
         // Close the input stream
@@ -36,27 +38,34 @@ public class test_1 {
         System.out.println("Output");
         // ใช้เช็คตัวที่เป็น String กับคอมเม้นตามโจทย์อาจารย์ แต่ละบรรทัด
         for (int j = 0; j < beforeSplitlines.size(); j++) {
+            // boolean s = true;
 
             // ถ้าค่าที่ตรวจมีลักษณะเป็น /* // */ จะแสดงผลเป็น comments : ค่าที่ตรวจ
             if (beforeSplitlines.get(j).contains("/*") && beforeSplitlines.get(j).contains("*/")
                     || beforeSplitlines.get(j).contains("//")) {
-                //System.out.println("comments : " + beforeSplitlines.get(j));
+                // System.out.println("comments : " + beforeSplitlines.get(j));
 
-            // ถ้าค่าที่ตรวจมีลักษณะเป็น ข้อความ จะแสดงผลเป็น string : ค่าที่ตรวจ
+                // ถ้าค่าที่ตรวจมีลักษณะเป็น ข้อความ จะแสดงผลเป็น string : ค่าที่ตรวจ
             } else if (Pattern.matches("\"[^\"]*\"", beforeSplitlines.get(j))) {
                 System.out.println("String : " + beforeSplitlines.get(j));
                 beforeSplitlines.remove(j);
-            
-            // กรณีที่บรรทัดนั้นไม่ใช่ทั้ง string และ comment จะเช็คในบรรทัด 
+
+                // กรณีที่บรรทัดนั้นไม่ใช่ทั้ง string และ comment จะเช็คในบรรทัด
             } else {
-                checkInLine(beforeSplitlines.get(j));
+                // boolean s = true;
+                if (existAfterError) {
+                    checkInLine(beforeSplitlines.get(j), existAfterError);
+                } else {
+                    break;
+                }
+
             }
 
         }
     }
 
     // เช็คภายในบรรทัด
-    public static void checkInLine(String beforeSplitlines){
+    public static void checkInLine(String beforeSplitlines, boolean existAfterError) {
 
         // สร้างเพื่อเก็บค่า String หลังจาก split ข้อมูลออกมาจากแถว
         // beforeSplitlines(ข้อมูลบรรทัดเดียวกันมันมีเว้นวรรคทำให้มันอ่านและเก็บค่าเป็นบรรทัดไม่ได้เป็นคำๆไป)
@@ -75,7 +84,7 @@ public class test_1 {
             if (lines.get(i).equals("+") || lines.get(i).equals("-") || lines.get(i).equals("*")
                     || lines.get(i).equals("/") || lines.get(i).equals("=") || lines.get(i).equals(">")
                     || lines.get(i).equals(">=") || lines.get(i).equals("<") || lines.get(i).equals("<=")
-                    || lines.get(i).equals("==") || lines.get(i).equals("++") || lines.get(i).equals("--") ) {
+                    || lines.get(i).equals("==") || lines.get(i).equals("++") || lines.get(i).equals("--")) {
                 System.out.println("operator : " + lines.get(i));
                 // ถ้าค่าที่ตรวจมีค่าเท่ากับ ( ) ให้แสดงผลค่า bracket : ค่าที่ตรวจ
             } else if (lines.get(i).equals("(") || lines.get(i).equals(")") || lines.get(i).equals("()")) {
@@ -98,7 +107,7 @@ public class test_1 {
                 System.out.println("integers : " + lines.get(i));
                 // ถ้าค่าที่ตรวจมีค่าเท่ากับ ตัวอักษรหรือตัวเลข 0-9 หรือแบบผสมทั้งคู่
                 // ให้แสดงผลค่า new identifier : ค่าที่ตรวจ
-            } else if (Pattern.matches("\\b[_a-zA-Z][_a-zA-Z0-9]*\\b", lines.get(i))) {// ^([a-zA-Z_$][a-zA-Z\\d_$]*)$
+            } else if (Pattern.matches("\\b[a-zA-Z][a-zA-Z0-9]*\\b", lines.get(i))) {// ^([a-zA-Z_$][a-zA-Z\\d_$]*)$
                 // สร้างตัวแปร boolean ไปใช้ในเงื่อนไข
                 boolean exist = true;
                 // loop เพื่อเช็คว่าค่าที่ตรวจสอบมีค่าที่ตรงกันในอาเรย์ลิสต์ไหม ถ้ามี exist
@@ -122,7 +131,8 @@ public class test_1 {
             } else {
                 // จะเป็น error เมื่อมีค่าที่มีตัวเลขนำหน้าตัวอักษร
                 System.out.println("error : " + lines.get(i));
-                break;
+                existAfterError = false;
+                // break;
             }
         }
     }
