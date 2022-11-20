@@ -1,35 +1,33 @@
 A + B
--
-if
-thenn
-id1
-id2
-id1
+- 
+* 
+if 
+then 
+id1 
+id2 
+id1 
 "Hello World"
+/*comment*/
+/* comment */
+//comment
+iF
+Then
+eLs
+
 ()
 ;
 b () n
 0
 123
 b
-bvgfhgjh
-YHJHKJHKJ
-HKJHhkjkj
-jkjjhUHKJHLHJ
-
-
-66556656jkrgkjfgkfjgn
+gaaaaabbbbb
+gghhhh123555
+2554588
+11111aaaaaaaa
 jfkfjdljf5465465456
-ffgdhg_kjjjjl
+aaaaaaa+-/
+ffgdhg__kjjjjl
 ____hhjjj
 ____1225
 ++
 --
-
-hghjkl+-
-//comment
-/*comment*/
-/* comment */
-/* comment */
-/* comment */
-/* comment */
