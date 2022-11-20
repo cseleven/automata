@@ -15,7 +15,7 @@ public class test_1 {
         System.out.printf("%nInput%n");
 
         // Open the file
-        FileInputStream fstream = new FileInputStream("fileName.txt");
+        FileInputStream fstream = new FileInputStream("D:/New folder/automata/fileName.txt");
         BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 
         // ตัวแปร สร้างเพื่อรับจาก textfile
